@@ -1,4 +1,4 @@
-# 🌐 OSI Model
+# 🌐 OSI Model (1.1)
 
 The **Open Systems Interconnection (OSI) Model** is a framework that explains how data moves through a network using **7 layers**.  
 Think of it like a recipe: each layer has a job, and together they let data travel from one device to another.
@@ -168,3 +168,278 @@ The **user-facing layer**: services and apps users interact with.
 <p align="center">
   <img src="https://github.com/user-attachments/assets/90be3546-4386-4d98-a062-27ad9b573138" alt="OSI model" width="800"/>
 </p>
+
+---
+
+# 🔌 Networking Devices (1.2)
+
+Networking devices are the **building blocks of a network**. Each device has a specific role in moving, securing, or managing traffic.
+
+---
+
+## 📡 Router
+A **Router** connects different networks together and routes data based on IP addresses.  
+
+- Works at **OSI Layer 3 (Network Layer)**  
+- Chooses the best path for data to travel  
+- Can connect diverse network types (LAN, WAN, fiber, copper)  
+
+### Variants
+- **Layer 2 = Switches** (forward traffic by MAC)  
+- **Layer 3 = Routers** (forward traffic by IP)  
+- **Layer 3 Switch = Hybrid** (switching + routing in one device)  
+
+---
+
+## 🔀 Switch
+A **Switch** connects multiple devices within the same network and forwards traffic based on **MAC addresses**.  
+
+- Works at **OSI Layer 2 (Data Link Layer)**  
+- Uses **ASIC (Application-Specific Integrated Circuit)** for fast, hardware-based forwarding  
+- Forms the **core of most enterprise networks**  
+
+### Types
+- **Standard Switch:** Forwards traffic based only on MAC  
+- **PoE Switch:** Provides both **data and electrical power** over the same Ethernet cable (for IP phones, cameras, wireless APs)  
+- **Multilayer Switch:** Adds Layer 3 routing functions on top of switching  
+
+---
+
+## 🔥 Firewall
+A **Firewall** protects a network by filtering traffic based on rules.  
+
+- Can operate at **Layer 3 (Network Layer)** and above  
+- Traditionally filtered by **ports** (e.g., TCP 80 = web traffic)  
+- **Next-Generation Firewalls (NGFW):** Can filter by **applications** (e.g., block Facebook, allow Gmail)  
+
+### Extra Features
+- **NAT (Network Address Translation):** Hides private IPs behind public IPs  
+- **VPN Support:** Encrypts traffic between sites  
+- **Dynamic Routing:** Some firewalls also act as routers  
+
+---
+
+## 🛡 IDS vs IPS
+Security systems that monitor and respond to intrusions.  
+
+- **IDS (Intrusion Detection System):** Detects malicious traffic and alerts admins (monitor only).  
+- **IPS (Intrusion Prevention System):** Detects and blocks malicious traffic automatically (active protection).  
+
+👉 Think of IDS as a **security camera** (watch + alert) and IPS as a **security guard** (watch + stop).  
+
+---
+
+## ⚖️ Load Balancer
+A **Load Balancer** spreads incoming traffic across multiple servers so no single server gets overloaded.  
+
+### Functions
+- **High availability:** Keeps apps online even if one server fails  
+- **SSL Offload:** Handles encryption/decryption so servers don’t have to  
+- **Caching:** Serves repetitive requests directly for speed  
+- **QoS:** Prioritizes certain traffic  
+- **Content Switching:** Routes requests based on app type (e.g., API vs website)  
+
+---
+
+## 🌐 Proxy
+A **Proxy server** acts as a middleman between clients and the internet.  
+
+### Uses
+- **Caching:** Saves bandwidth & speeds up browsing  
+- **Security:** URL filtering, content scanning, access control  
+- **Types:**  
+  - **Explicit Proxy:** Users configure it manually in settings  
+  - **Transparent Proxy:** Works silently, no user config needed  
+
+---
+
+## 💾 SAN vs NAS
+Both are network storage solutions but work differently:  
+
+- **SAN (Storage Area Network):**  
+  - **Block-level storage** (like a dedicated storage database. The server sees it as a raw disk and can manage it however it wants)  
+  - High speed, high control, heavy-duty use. 
+  - Often used in enterprise data centers  
+
+- **NAS (Network Attached Storage):**  
+  - **File-level storage** (like a storage folder inside a shared network database. It’s already organized with files and folders; you just access what you need without worrying about how it’s stored underneath.)  
+  - Easier setup, great for file sharing/home use  
+
+⚡ Both require **high bandwidth** and often use **isolated networks**.  
+
+---
+
+## 📶 Wireless Networks
+- Multiple **Access Points (APs)** cover an area so devices can connect anywhere. 
+- Users can roam seamlessly between APs without losing connection. 
+- Each AP needs security settings and access rules.  
+
+### Wireless LAN Controller (WLC)
+- Central management for all APs.  
+- Pushes configurations, security updates, and monitors usage from one place.
+
+---
+
+## 🚀 Networking Functions
+
+### CDN (Content Delivery Network)
+- **Think of it like mini copies of a website or video stored closer to users.**
+- Instead of everyone hitting the main server, users get content from the nearest edge server → faster loading. 
+- Improves global performance  
+- Example: Watching YouTube in Kuwait? You get the nearest YouTube server copy, not the origin server in the US.
+
+---
+
+### VPN (Virtual Private Network)
+- Creates an **encrypted tunnel** for secure remote access (like a secure, invisible tunnel over the internet)
+- **VPN Concentrator/Head-End:** Central hub for managing all tunnels, traffic, and authentication. 
+- Can be:  
+  - **Hardware appliance:** Used by big orgs for performance  
+  - **Software/OS-integrated:** Common for smaller orgs or individuals
+- Often works with firewalls for encryption (IPsec/SSL).
+
+---
+
+### QoS (Quality of Service)
+- Prioritizes important traffic (like VoIP, video calls, real-time apps)  
+- Also called **packet shaping**  
+- Built into routers, switches, firewalls.
+- Configurable per app, device, or network.
+- **Analogy**: VIP cars get the fast lane, regular cars wait.
+
+---
+
+### TTL (Time To Live)
+- Maximum lifetime of a data packet before it’s discarded. 
+- Prevents **endless routing loops**   
+- Decreases by 1 at each router hop  
+- Defaults: **Windows = 128 hops, Linux/Mac = 64 hops**   
+
+---
+
+### Routing Loops
+- Packet keeps bouncing between Router1 ↔ Router2 (back and forth)  
+- TTL eventually drops the packet to stop looping (When TTL = 0 → packet is dropped)
+- Often caused by **misconfigured static routes**  
+
+---
+
+### IP (Internet Protocol)
+- Responsible for addressing & packet delivery  
+- TTL is built into IP to stop looping packets  
+
+---
+
+### DNS (Domain Name System)
+- Converts human-readable names (e.g., `google.com`) into IPs  
+- Uses **TTL in seconds** for cache expiry  
+- After TTL expires, DNS queries are refreshed  
+
+---
+
+# ☁️ Cloud & Virtual Networking (1.3)
+
+Cloud computing allows organizations to run servers, networks, and applications **virtually** instead of relying solely on physical hardware.
+
+---
+
+## 🌐 Virtual Networks
+- Virtualizes the entire physical network (routers, switches, cables, servers)  
+- Server farms are shifted into virtualized environments  
+
+### NFV (Network Function Virtualization)
+- Converts physical devices (routers, switches, firewalls, load balancers) into **virtual devices**  
+- Virtualized devices work just like physical ones  
+- Managed centrally through a **hypervisor**  
+- Can deploy **VMs, containers, and fault-tolerant setups**  
+
+---
+
+## 🏢 VPC (Virtual Private Cloud)
+- A **private, isolated cloud environment** with virtual routers, switches, firewalls, and load balancers  
+- Each component can be managed separately, like individual departments in a company  
+
+### Communication
+- **Cloud Router:** Connects devices **within the VPC**  
+- **VPN:** Secure tunnel for external access to VPC  
+
+---
+
+## 🔗 Connecting to the Cloud
+- **VPN:** Encrypted connection for secure access (private access)  
+- **Internet Gateway / VPC Gateway:** Public access for internet users (open access)  
+- **VPC NAT:** Allows cloud to access external networks while **hiding private IPs**  
+
+---
+
+## 🔌 VPC Endpoint
+- Direct connection between **private cloud networks**  
+- No internet middleman, just **private communication**  
+
+---
+
+## 🛡 Security in the Cloud
+
+### Security Groups
+- Rules applied to **individual virtual NICs (VNICs)**  
+- Can target specific VMs, ports, IPs, protocols  
+- **Flexible and granular**  
+
+### Security Lists
+- Rules applied **subnet-wide**  
+- Less flexible, applies to all devices in the subnet  
+- Harder to manage; misconfigurations can create **security holes**  
+
+💡 **Best Practice:** Prefer Security Groups for fine-grained, safe control  
+
+---
+
+## ☁️ Cloud Deployment Models
+
+### Private Cloud
+- Fully controlled by you or provider  
+- Used only by your organization  
+- Example: Banks, government, large corporations  
+
+### Public Cloud
+- Managed by cloud provider  
+- Shared infrastructure, isolated data  
+- Examples: Gmail, Dropbox  
+
+### Hybrid Cloud
+- Combines private & public cloud  
+- Example: Customer data stored privately, website hosted publicly  
+
+---
+
+## 💻 Cloud Service Models
+
+### SaaS (Software as a Service)
+- Use the application **without managing infrastructure**  
+- Provider handles updates, servers, storage  
+- Example: Office 365, Gmail, Dropbox  
+
+### IaaS / HaaS (Infrastructure / Hardware as a Service)
+- You manage: OS, storage, apps, updates  
+- Provider manages: Physical servers, network, hardware  
+- Example: Microsoft Azure VMs, Google Compute Engine  
+
+### PaaS (Platform as a Service)
+- Build, test, deploy apps without managing servers or OS  
+- Focus is on **code**, not infrastructure  
+- Example: Google App Engine, Heroku, Salesforce  
+
+---
+
+<details>
+<summary>💡 Quick Analogy</summary>
+
+- **NFV:** Think of your router or firewall as software now, not a physical box  
+- **VPC:** Your private office in the cloud  
+- **Security Groups:** Door locks for individual rooms (VMs)  
+- **Security Lists:** One rule for the entire floor (subnet)  
+- **VPN:** Secret tunnel into your office  
+- **Public Cloud:** Shared office space; **Private Cloud:** Your personal office  
+</details>
+
+
