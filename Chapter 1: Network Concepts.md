@@ -442,4 +442,246 @@ Cloud computing allows organizations to run servers, networks, and applications 
 - **Public Cloud:** Shared office space; **Private Cloud:** Your personal office  
 </details>
 
+---
+
+# 🌍 Intro to IP & Networking Protocols (1.4)
+
+---
+
+## 📦 IP Overview
+Think of IP like **delivery trucks carrying packages**:
+
+| Networking Term      | Analogy                                 |
+|---------------------|----------------------------------------|
+| **Network**         | The **road system** trucks use.        |
+| **IP (Internet Protocol)** | The **truck** carrying your packages. |
+| **TCP/UDP**         | The **packages** inside the truck.     |
+| **IP Address**      | Your **house address**.                |
+| **Ports**           | The **specific drop-off spot** (kitchen, bedroom, etc.). |
+
+---
+
+## 🚚 TCP vs UDP
+
+| Feature | TCP (Transmission Control Protocol) | UDP (User Datagram Protocol) |
+|---------|-----------------------------------|-----------------------------|
+| **Delivery Guarantee** | ✅ Yes (acknowledgements, retries) | ❌ No (fire & forget) |
+| **Use Cases** | Email, web, file transfer | Video calls, gaming, streaming |
+| **Speed** | Slower, reliable | Faster, no checks |
+| **Handshake** | 🔁 3-Way Handshake | 🚫 None |
+
+### 🔍 TCP Details:
+- **3-Way Handshake**: `SYN → SYN-ACK → ACK`
+- **Acknowledgement System**: Confirms delivery; resends errors.
+- **Flow Control**: Receiver can slow/speed packet flow.
+- **Orderly Delivery**: Guarantees correct order.
+- **Teardown**: Gracefully closes connection.
+
+### ⚡ UDP Details:
+- No error checks.
+- No delivery confirmation.
+- No guaranteed order.
+- 🚀 **Super fast** → great for live calls/gaming.
+
+---
+
+## 🎯 Multiplexing
+An app can use **both TCP & UDP simultaneously**.  
+Example: **Zoom**  
+- Video/audio call → `UDP`  
+- Chat messages → `TCP`
+
+---
+
+## 🔑 Ports & Sockets
+
+| Type                | Port Range | Used By |
+|--------------------|-----------|--------|
+| **Ephemeral Ports** | `1024–65535` | Temporary, often client side |
+| **Non-Ephemeral Ports** | `0–1023` | Permanent, often server side |
+
+💡 Both client & server **can use either range**.
+
+### IPv4 Socket Structure:
+- **Client Socket:** Client IP + protocol + client port
+- **Server Socket:** Server IP + protocol + server port
+
+---
+
+## 🛠️ Key Notes on Ports
+- TCP and UDP **can share the same port number** but are separate services.
+- Ports are **not a security feature** — don’t rely on them for security.
+- Server ports should be **well-known & predictable**.
+
+---
+
+# 📜 Common Networking Protocols & Ports
+
+<details>
+<summary>📂 FTP (File Transfer Protocol) - <code>TCP 20/21</code></summary>
+
+- Transfer files between systems.
+- `20`: **Data transfer** (active mode).  
+- `21`: **Control channel** (auth & commands).
+- Username/password-based auth.
+- Fully customizable: add, delete, edit files.
+
+</details>
+
+<details>
+<summary>🔐 SSH (Secure Shell) - <code>TCP 22</code></summary>
+
+- Secure remote command-line access.
+- Encrypted communication for admin tasks.
+
+</details>
+
+<details>
+<summary>📁 SFTP (Secure File Transfer Protocol) - <code>TCP 22</code></summary>
+
+- Built on SSH → fully secure.
+- Same flexibility as FTP but encrypted.
+
+</details>
+
+<details>
+<summary>🖥️ Telnet - <code>TCP 23</code></summary>
+
+- Legacy remote console access.
+- ❌ No encryption → **Not recommended**.
+
+</details>
+
+<details>
+<summary>📧 SMTP (Simple Mail Transfer Protocol)</summary>
+
+| Port | Use |
+|------|-----|
+| `25/TCP` | Legacy SMTP (unsecure, outdated). |
+| `587/TCP` | SMTP w/ TLS (secure). |
+
+- Used to **send emails** (client → server or server → server).  
+- **Receiving emails** handled by `POP3` or `IMAP`.
+
+</details>
+
+<details>
+<summary>🌍 DNS (Domain Name System)</summary>
+
+- Converts **domain names → IP addresses**.
+- `53/UDP`: Small queries  
+- `53/TCP`: Large queries
+
+</details>
+
+<details>
+<summary>🎟️ DHCP (Dynamic Host Configuration Protocol) - <code>UDP 67/68</code></summary>
+
+- Auto-assigns IP addresses to clients.
+- **DHCP Reservation**: Permanent IP lease.
+- `67`: Server side  
+- `68`: Client side
+
+</details>
+
+<details>
+<summary>📦 TFTP (Trivial File Transfer Protocol) - <code>UDP 69</code></summary>
+
+- Lightweight, no authentication, no directory editing.
+- Used in VoIP devices.
+
+</details>
+
+<details>
+<summary>🌐 HTTP & HTTPS</summary>
+
+| Protocol | Port | Security |
+|----------|------|----------|
+| HTTP | `80/TCP` | ❌ Unencrypted |
+| HTTPS | `443/TCP` | ✅ TLS/SSL encrypted |
+
+</details>
+
+<details>
+<summary>⏱️ NTP (Network Time Protocol) - <code>UDP 123</code></summary>
+
+- Keeps all device clocks in sync → **critical for logs & security**.
+
+</details>
+
+<details>
+<summary>📊 SNMP (Simple Network Management Protocol)</summary>
+
+| Version | Security |
+|---------|----------|
+| v1 | None |
+| v2 | Bulk queries, no encryption |
+| v3 | ✅ Encrypted & secure |
+
+- `161/UDP`: Device queries  
+- `162/UDP`: SNMP Traps (device-initiated alerts)
+
+</details>
+
+<details>
+<summary>👤 LDAP & LDAPS</summary>
+
+| Protocol | Port | Security |
+|----------|------|----------|
+| LDAP | `389/TCP` | ❌ No encryption |
+| LDAPS | `636/TCP` | ✅ SSL encrypted |
+
+- Used for **directory services** & authentication.
+
+</details>
+
+<details>
+<summary>🗂️ SMB (Server Message Block) - <code>TCP 445</code></summary>
+
+- Built into Windows OS.
+- File & printer sharing, file locking.
+- Difference:  
+  - **SMB** = Sharing (OS-integrated)  
+  - **SFTP** = Secure transfer (SSH-based)
+
+</details>
+
+<details>
+<summary>📝 Syslog - <code>UDP 514</code></summary>
+
+- Logs messages from devices & services.
+- Commonly fed into **SIEM systems**.
+- Can take a LOT of storage.
+
+</details>
+
+<details>
+<summary>💾 Database Protocols</summary>
+
+| DB Type | Port |
+|---------|------|
+| Microsoft SQL Server | `1433/TCP` |
+
+</details>
+
+<details>
+<summary>🖥️ RDP (Remote Desktop Protocol) - <code>TCP 3389</code></summary>
+
+- Remote desktop control (Windows).
+
+</details>
+
+<details>
+<summary>📞 SIP (Session Initiation Protocol)</summary>
+
+| Port | Use |
+|------|-----|
+| `5060/TCP` | SIP (unencrypted) |
+| `5061/TCP` | SIP over TLS (encrypted) |
+
+- Sets up, modifies, tears down **real-time sessions** (voice, video).
+
+</details>
+
+
 
