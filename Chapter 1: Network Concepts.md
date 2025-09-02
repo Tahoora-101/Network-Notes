@@ -839,3 +839,69 @@ Used in rural or remote areas where cables can’t reach.
 | Multimode Fiber   | ~2 km (short)  | Thick (50–62.5 µm)| LED         | Low         |
 | Single-mode Fiber | 100+ km (long) | Very thin (~9 µm) | Laser       | High        |
 
+---
+
+# 🖧 Copper Cabling & Network Transceivers
+
+## 🪢 Importance of Cabling
+- Cables are the **backbone of networking**; even wireless tech relies on wired infrastructure.
+- **Proper planning** is crucial because once installed, cables are **hard and expensive** to remove or redo.
+
+---
+
+## 🧵 Twisted Pair Copper Cabling
+- Pairs of wires carry `+` and `-` signals for transmit/receive.
+- Twisting **reduces interference** and **crosstalk**; each pair has a unique twist rate.
+- **Multiple wire pairs** ensure redundancy and higher data integrity.
+- Cable speed is determined by **signal quality and standards** (not just the cable itself).
+- **Categories**:
+  - **Cat5**: Up to `1 Gbps`.
+  - **Cat6/Cat7**: Higher speeds, longer distances, better shielding.
+
+---
+
+## 📡 Coaxial Cable
+- Inner conductor and outer shield **share the same axis** → improved signal integrity.
+- Common type: `RG-6`.
+- Used for **TV, digital cable, high-speed internet**.
+
+---
+
+## 🔗 Twinaxial Cable
+- Has **two inner conductors** sharing the same axis.
+- Used for **10 Gbps Ethernet (SFP+)**.
+- **Duplex**: Can send and receive simultaneously.
+- Pros: Low cost, low latency.
+- Cons: **Short range** (`≤5m`).
+
+---
+
+## 🏢 Plenum & Cabling Spaces
+- **Plenum space**: Ceiling area with HVAC air circulation.
+- **Non-plenum space**: No active air circulation.
+- **Plenum-rated cables**:
+  - Made of **fire-rated materials** like FEP or low-smoke PVC.
+  - **Expensive** and **less flexible**.
+  - Installed **permanently** and hard to remove.
+
+---
+
+## 🔌 Network Transceivers
+
+### 🔄 Transceivers
+- **Definition**: A combo of transmitter and receiver in a single module.
+- Supports either **fiber or copper**, but not both in the same module.
+
+### 📦 SFP & SFP+
+- **SFP (Small Form-factor Pluggable)**:
+  - Up to `1 Gbps`.
+  - Also available as **RJ45 SFP** for copper.
+- **SFP+**:
+  - Supports `10 Gbps` or more.
+  - Same physical size as SFP.
+
+### 📦 QSFP & QSFP+
+- **QSFP (Quad SFP)**:
+  - Combines 4x SFP channels → `4 Gbps` total.
+- **QSFP+**:
+  - Combines 4x SFP+ channels → `40 Gbps` total.
