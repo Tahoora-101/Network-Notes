@@ -683,5 +683,106 @@ Example: **Zoom**
 
 </details>
 
+---
+
+# 🔐 Other Protocols
+
+| Protocol | Layer | Purpose | Key Features |
+|----------|------|---------|--------------|
+| **ICMP** (Internet Control Message Protocol) | L3 | Diagnostics, error messages, status checks | Used by `ping`, `traceroute`; reports TTL expiry, unreachable hosts |
+| **GRE** (Generic Routing Encapsulation) | L3 | Creates tunnels between endpoints | Encapsulates traffic; no encryption; point-to-point |
+| **VPN** (Virtual Private Network) | L3/4 | Secure communication over public internet | Encryption via firewall/VPN concentrator; Site-to-Site or Remote Access |
+| **IPSec** (Internet Protocol Security) | L3 | Encrypts/authenticates IP packets | Uses AH & ESP; anti-replay, integrity checks |
+| **IKE** (Internet Key Exchange) | L3 | Negotiates IPSec keys securely | Uses Diffie-Hellman; Phase 1 (keys), Phase 2 (SA setup) |
+| **Transport Mode** | L3 | Encrypts payload only | Original IP header visible; lightweight |
+| **Tunnel Mode** | L3 | Encrypts entire packet | Adds new IP header; hides source/destination |
+
+---
+
+# 🌐 Network Communication
+
+| Method       | Type               | How It Works | Common Uses                     | IPv4/IPv6       |
+|--------------|-------------------|-------------|--------------------------------|-----------------|
+| **Unicast**  | One-to-One        | One sender → one receiver | Web browsing, file transfers   | ✅ Both         |
+| **Multicast**| One-to-Many (group)| Sends to selected devices | Router updates, stock alerts   | ✅ Both         |
+| **Anycast**  | One-to-Nearest    | Closest receiver responds  | DNS, CDNs, DDoS mitigation     | ✅ Both         |
+| **Broadcast**| One-to-All (local)| Sends to all devices      | ARP, routing updates          | ✅ IPv4 ❌ IPv6 |
+
+💡 **Key Notes:**  
+- **Unicast** is your default everyday comms.  
+- **Multicast** is efficient for groups, but not huge scale.  
+- **Anycast** = “nearest server wins.”  
+- **Broadcast** is dying; IPv6 doesn’t use it.  
+
+<details>
+<summary>📝 Analogy</summary>
+
+Think of it like delivering mail:  
+- **Unicast:** A letter to one friend.  
+- **Multicast:** Invite letters to your club members only.  
+- **Anycast:** You send it, and the *nearest* post office replies.  
+- **Broadcast:** Yelling from the rooftop to everyone.  
+</details>
+
+---
+
+# 📡 Wireless Networking (1.5)
+
+## 📶 Wi-Fi & IEEE 802.11
+Wi-Fi is standardized by the **IEEE LAN/MAN** group (802.11 standards).  
+It's constantly updated to support higher speeds and frequencies.
+
+| IEEE Standard | Wi-Fi Gen    | Frequencies             | Max Link Speed    |
+|--------------|-------------|------------------------|------------------|
+| **802.11a**  | Wi-Fi 1     | 5 GHz                  | 54 Mbps          |
+| **802.11b**  | Wi-Fi 2     | 2.4 GHz                | 11 Mbps          |
+| **802.11g**  | Wi-Fi 3     | 2.4 GHz                | 54 Mbps          |
+| **802.11n**  | Wi-Fi 4     | 2.4 / 5 GHz            | 600 Mbps         |
+| **802.11ac** | Wi-Fi 5     | 5 GHz                  | 1.3 Gbps         |
+| **802.11ax** | Wi-Fi 6/6E  | 2.4 / 5 / 6 GHz        | 9.6 Gbps         |
+| **802.11be** | Wi-Fi 7     | 2.4 / 5 / 6 GHz        | 46 Gbps          |
+
+💡 **Mnemonic:**  
+`A=Asian`, `B=Baby`, `G=Girl`, `N=No`, `AC=Actually`, `AX=A`, `BE=Beauty`
+
+---
+
+## 📱 4G & LTE
+- **4G** = Fourth generation of mobile networking.  
+- **LTE (Long Term Evolution)** = Marketing name for 4G; based on **GSM** and **EDGE** standards.  
+- Unified **CDMA** and **GSM** technologies.  
+
+---
+
+## 🚀 5G
+- **5th gen mobile networking** with massive performance jump.
+- **Real-world speed:** 100–900 Mbps  
+- **Theoretical max:** 10 Gbps  
+- **Benefits:**  
+  - Lightning-fast file transfers (seconds, not minutes).  
+  - Better **cloud processing** → less strain on your device.  
+  - Reduced bandwidth bottlenecks.  
+  - Near real-time notifications & monitoring.  
+
+---
+
+## 🛰️ Satellite Networking
+Used in rural or remote areas where cables can’t reach.  
+
+| Feature                 | Details                          |
+|------------------------|----------------------------------|
+| **Latency**            | ~250 ms up + 250 ms down (space trip!) |
+| **Speed**              | ~100 Mbps down, ~5 Mbps up       |
+| **Cost**               | Expensive as hell 💸            |
+| **Frequency**          | ~2 GHz (signal easily scattered) |
+| **Rain Fade**          | Bad weather = weak/no signal    |
+
+---
+
+💡 **Key Takeaways:**
+- Wi-Fi keeps evolving with **higher frequencies** & **multi-Gbps speeds**.  
+- LTE is basically **4G marketing fluff**.  
+- 5G makes cloud and AI integration seamless.  
+- Satellites are great for **coverage**, terrible for **latency**.  
 
 
