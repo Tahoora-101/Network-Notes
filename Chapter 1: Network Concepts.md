@@ -742,9 +742,6 @@ It's constantly updated to support higher speeds and frequencies.
 | **802.11ax** | Wi-Fi 6/6E  | 2.4 / 5 / 6 GHz        | 9.6 Gbps         |
 | **802.11be** | Wi-Fi 7     | 2.4 / 5 / 6 GHz        | 46 Gbps          |
 
-💡 **Mnemonic:**  
-`A=Asian`, `B=Baby`, `G=Girl`, `N=No`, `AC=Actually`, `AX=A`, `BE=Beauty`
-
 ---
 
 ## 📱 4G & LTE
@@ -773,7 +770,7 @@ Used in rural or remote areas where cables can’t reach.
 |------------------------|----------------------------------|
 | **Latency**            | ~250 ms up + 250 ms down (space trip!) |
 | **Speed**              | ~100 Mbps down, ~5 Mbps up       |
-| **Cost**               | Expensive as hell 💸            |
+| **Cost**               | Too expensive 💸            |
 | **Frequency**          | ~2 GHz (signal easily scattered) |
 | **Rain Fade**          | Bad weather = weak/no signal    |
 
@@ -785,4 +782,60 @@ Used in rural or remote areas where cables can’t reach.
 - 5G makes cloud and AI integration seamless.  
 - Satellites are great for **coverage**, terrible for **latency**.  
 
+---
+
+# 🖧 Ethernet Standards
+
+## Overview
+- **Ethernet**: Industry-standard networking technology used for wired LAN connections, cabling, and data transmission.
+- Supports **copper and fiber cabling**, defined by **IEEE 802.3** standards.
+
+---
+
+## IEEE Ethernet Standards
+
+| IEEE Standard  | Description               | Media  | Network Speed |
+|----------------|---------------------------|--------|---------------|
+| 1000BASE-T     | Gigabit Ethernet          | Copper | 1 Gbps        |
+| 10GBASE-T      | 10 Gigabit Ethernet       | Copper | 10 Gbps       |
+| 1000BASE-SX    | Gigabit Ethernet (Short)  | Fiber  | 1 Gbps        |
+
+---
+
+## Deciphering the Standard
+- **Numbers** → represent speed (e.g., `1000BASE-T` = 1 Gbps)  
+- **BASE** → Baseband (single frequency signal transmission)  
+- **Media Indicators**:  
+  - `T` = Twisted Pair Copper  
+  - `F` = Fiber  
+  - `SX` = Short Wavelength/Short Distance Fiber  
+- ⚠️ **Note:** IEEE does not officially guarantee strict correlation between the acronym and specification details.
+
+---
+
+# 🔬 Optical Fiber Networking
+
+## Key Characteristics
+- No RF (radio frequency) interference which makes it difficult to tap or monitor.
+-Data is transmitted by LIGHT.
+-It’s signal degrades slowly over the length than copper. Eg: Copper can degrade quickly if the length keeps increasing but fiber does it more slowly.
+-It does not have RF so basically it cannot leak signals or be interfered with.
+
+---
+
+## Fiber Cable Structure
+1. **Core**: The central glass strand where light travels and bounces.  
+2. **Cladding**: A glass layer surrounding the core. Has a lower refractive index to trap light inside the core via total internal reflection.  
+3. **Coating (Buffer)**: A plastic (usually acrylic) protective layer that cushions the fragile core and cladding — first line of real protection.  
+4. **Cable Jacket**: The tough outer covering that shields the entire assembly (can include multiple fibers, strength members, and ripcords).  
+
+
+---
+
+## Fiber Types
+
+| Fiber Type        | Distance         | Core Size           | Light Source | Cost         |
+|------------------|----------------|------------------|-------------|-------------|
+| Multimode Fiber   | ~2 km (short)  | Thick (50–62.5 µm)| LED         | Low         |
+| Single-mode Fiber | 100+ km (long) | Very thin (~9 µm) | Laser       | High        |
 
