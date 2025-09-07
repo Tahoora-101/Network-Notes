@@ -850,10 +850,11 @@ Used in rural or remote areas where cables can’t reach.
 ---
 
 ## 🧵 Twisted Pair Copper Cabling
-- Pairs of wires carry `+` and `-` signals for transmit/receive.
+- Pairs of wires carry '+' and '-' signals for transmit/receive.
 - Twisting **reduces interference** and **crosstalk**; each pair has a unique twist rate.
-- **Multiple wire pairs** ensure redundancy and higher data integrity.
+- Multiple wire pairs ensure redundancy and higher data integrity. **This means the system can often correct errors or continue functioning even if one pair is degraded, by using the combined signal from all pairs**.
 - Cable speed is determined by **signal quality and standards** (not just the cable itself).
+- Cables must be manufactured by the standards of the IEEE to support the desired speed and distance.
 - **Categories**:
   - **Cat5**: Up to `1 Gbps`.
   - **Cat6/Cat7**: Higher speeds, longer distances, better shielding.
@@ -870,7 +871,7 @@ Used in rural or remote areas where cables can’t reach.
 ## 🔗 Twinaxial Cable
 - Has **two inner conductors** sharing the same axis.
 - Used for **10 Gbps Ethernet (SFP+)**.
-- **Duplex**: Can send and receive simultaneously.
+- **Duplex**: Can send and receive signals simultaneously.
 - Pros: Low cost, low latency.
 - Cons: **Short range** (`≤5m`).
 
@@ -905,3 +906,167 @@ Used in rural or remote areas where cables can’t reach.
   - Combines 4x SFP channels → `4 Gbps` total.
 - **QSFP+**:
   - Combines 4x SFP+ channels → `40 Gbps` total.
+
+---
+
+
+# 🖧 Fiber Connectors
+
+## 🔦 Fiber Optic Connectors
+
+### SC (Subscriber Connector)
+- **Square Connector**: Nicknamed for its shape.
+- **Standard Connector**: Very common in data centers and telecom infrastructure.
+- **Locking Mechanism**: Push-pull design. Secure; requires intentional force to insert and remove.
+
+### LC (Local Connector)
+- **Little Connector**: Compact size, ideal for high-density patches (e.g., SFP modules).
+- **Locking Mechanism**: Integrated latch (clip) that is pressed to unlock.
+- **Duplex Format**: Almost always used in a paired (duplex) configuration for Tx/Rx.
+
+### ST (Straight Tip Connector)
+- **Bayonet Connector**: Uses a twist-and-lock bayonet coupling, unlike push-pull SC/LC.
+- **Legacy Use**: Common in older installations and fiber distribution panels.
+
+### MPO/MTP (Multi-Fiber Push-On)
+- **High-Density**: Houses 12, 24, or more fibers in a single ferrule.
+- **Space-Saving**: Essential for 40/100/400G parallel optic transceivers (e.g., QSFP).
+- **Locking Mechanism**: Push-pull, similar to SC.
+- **Note**: MTP is a specific, high-performance *branded* version of the MPO standard.
+
+---
+
+## 🔌 Copper Connectors
+
+### RJ11 (Registered Jack 11)
+- **Configuration**: Typically **6P2C** (6 Position, 2 Contact) 
+- **Primary Use**: **Telephone** wiring and **DSL** modem connections.
+
+### RJ45 (Registered Jack 45)
+- **Configuration**: **8P8C** (8 Position, 8 Contact). This is the standard for networking.
+- **Primary Use**: **Ethernet** (Twisted-Pair Copper) cabling (Cat5/6/6A/7/8).
+- **Modular Connector**: The plastic plug is correctly called an **8P8C modular connector**, though "RJ45" is the universal term in networking.
+
+### F-Type Connector
+- **Threaded Coupling**: Must be screwed onto a port to ensure a solid connection.
+- **Primary Use**: **Coaxial cabling** for:
+    - **Cable Television (TV)**
+    - **Cable Modems** (**DOCSIS** standard)
+    - Satellite equipment
+- **Common Cable**: Used with **RG-6** coaxial cable.
+
+### BNC (Bayonet Neill–Concelman)
+- **Bayonet Lock**: Insert and twist ~90 degrees to lock. Highly secure against vibration.
+- **Primary Use**: **Legacy networking**, **radio antenna**, **RF video** (e.g., surveillance systems), and test equipment.
+- **Clarification**: While sometimes used with Twinaxial, its most common historical network use was with ** coaxial** cabling.
+
+---
+
+# 🌐 Network Topologies (1.6)
+
+Network topologies are **blueprints** of how devices and networks are physically or logically connected.  
+They help in **designing networks** and make **troubleshooting easier** by showing how data flows.  
+
+---
+
+## ⭐ Star / Hub-and-Spoke
+- Common in **small and large networks**.
+- All devices connect to a **central device** (usually a switch).  
+- **Switches > Hubs** (Hubs are outdated and dumb).  
+- Easy to troubleshoot but a **central failure kills everything**.
+
+---
+
+## 🔗 Mesh
+- Multiple routers placed strategically for **seamless connectivity**.  
+- Great for **redundancy, load balancing, and fault tolerance**.  
+- Used in **WANs**, either partial or fully meshed.  
+- Example: Move around a building and stay connected to the Wi-Fi.
+
+---
+
+## 🔀 Hybrid
+- A **mix of topologies** (e.g., Mesh + Star + Point-to-Point).  
+- Flexible and scalable but **complex**.
+
+---
+
+## 🌿 Spine-and-Leaf
+- Common in **data centers**.  
+- **Spine = Core switches**  
+- **Leaf = Access switches**  
+- Leafs connect to all Spines (**no Spine↔Spine or Leaf↔Leaf** links).  
+
+| Feature     | Benefit                     |
+|------------|----------------------------|
+| **Redundant** | No single point of failure |
+| **Fast**      | High-speed connectivity    |
+| **Scalable**  | Easy to add devices        |
+| **Expensive** | Costs can skyrocket ⚠️    |
+
+---
+
+## 🔌 Point-to-Point
+- Direct connection between **two networks or sites**.  
+- Example: HQ ↔ Branch Office.  
+- Simple, reliable, **not scalable**.
+
+---
+
+💡 **Key Takeaways:**  
+- **Star** is simple but switch-dependent.  
+- **Mesh** = best for redundancy and coverage.  
+- **Hybrid** = flexible combo of designs.  
+- **Spine-and-Leaf** = data center favorite.  
+- **Point-to-Point** = simple site-to-site link.
+
+---
+
+# 🏛️ Network Architecture
+
+Network architecture defines **how layers and devices are structured** in a network, making management and scalability easier.  
+
+---
+
+## 🔺 Three-Tier Architecture
+
+| Layer           | Purpose                                                      |
+|----------------|--------------------------------------------------------------|
+| **Core**       | - The backbone of the network. <br> - Hosts **servers, databases, and apps**. <br> - High-speed connections for heavy traffic. |
+| **Distribution**| - Acts as a **middle layer** between Core and Access. <br> - Uses **switches** to connect Access devices to Core. |
+| **Access**     | - The entry point for users. <br> - **End stations, printers, and devices** connect here. |
+
+💡 **Why Three-Tier?**  
+- Scalable and well-structured.  
+- Easier to manage in **large organizations**.  
+
+---
+
+## 🗜️ Collapsed Core
+
+When **Core + Distribution** are merged into one layer.  
+
+| Feature        | Benefit                       |
+|---------------|------------------------------|
+| **Ideal for** | Small to mid-size networks   |
+| **Pros**      | Cheaper, simpler, easier to manage |
+| **Cons**      | Less resilient; a failure can disrupt everything ⚠️ |
+
+---
+
+## 🔀 Traffic Flow
+
+| Flow Type           | Description                                                 |
+|--------------------|-------------------------------------------------------------|
+| **East–West**      | - Traffic inside the data center. <br> - **Fast, secure**, and internal. |
+| **North–South**    | - Traffic entering or exiting the data center. <br> - More exposure to **security risks**. |
+
+---
+
+💡 **Key Takeaways:**  
+- **Three-Tier** = Best for large orgs.  
+- **Collapsed Core** = Budget-friendly, simple networks.  
+- **East–West Traffic** stays internal; **North–South Traffic** needs strong security.
+
+
+
