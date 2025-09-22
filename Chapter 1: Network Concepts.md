@@ -1068,5 +1068,211 @@ When **Core + Distribution** are merged into one layer.
 - **Collapsed Core** = Budget-friendly, simple networks.  
 - **East–West Traffic** stays internal; **North–South Traffic** needs strong security.
 
+---
 
+# 🌐 IPv4 Addressing (1.7)
 
+The **Internet Protocol version 4 (IPv4)** is a core networking protocol that provides an addressing system for identifying devices on a network.
+
+---
+
+## 🏘️ Networking with IPv4: Neighborhood Analogy
+
+Think of networking with IPv4 like organizing a neighborhood:
+
+| Networking Concept | Real-World Analogy |
+|-------------------|-------------------|
+| **IP Network** | The entire neighborhood |
+| **IP Address** | Your unique house number |
+| **Subnet** | A single street/block where houses can communicate directly |
+| **Subnet Mask** | The fence line showing where your block starts and ends |
+| **Default Gateway** | The main gate out of your neighborhood (e.g., `192.168.1.1`) |
+
+---
+
+## 🔑 Special IPv4 Addresses
+
+| Address Type | Range | Purpose |
+|-------------|-------|---------|
+| **Loopback (localhost)** | `127.0.0.1` to `127.255.255.254` | Testing your own device's network stack |
+| **Reserved (Class E)** | `240.0.0.0` to `255.255.255.254` | Reserved for future use and testing |
+| **Virtual IP (VIP)** | Varies | Not tied to physical hardware; used for VMs, internal router addresses |
+
+---
+
+## 📊 IPv4 Structure Overview
+
+- **OSI Layer**: 3 (Network Layer)
+- **Total Bits**: 32 bits = 4 bytes (octets)
+- **Octet Range**: 0-255 (e.g., `192.168.1.131`)
+- **Maximum Value**: 255 per octet (2⁸ = 256 values, 0-255)
+
+---
+
+## ⚙️ Automatic IP Configuration
+
+### DHCP (Dynamic Host Configuration Protocol)
+- Automatically assigns IP addresses and network configurations
+- Eliminates need for manual IP configuration
+- Uses ports: `UDP 67` (server), `UDP 68` (client)
+
+### APIPA (Automatic Private IP Addressing)
+- Self-assigns an IP when DHCP fails
+- **Range**: `169.254.0.1` to `169.254.255.254` (first/last 256 addresses reserved)
+- Uses ARP to ensure address isn't already in use
+
+---
+
+## 🌍 Public vs Private Addresses
+
+### The IPv4 Address Problem
+- Too many devices for available addresses
+- Inefficient, non-contiguous address blocks
+- Near complete depletion of available addresses
+
+### RFC 1918 Private IPv4 Addresses
+
+| Class | Range | Subnet Mask | CIDR | Typical Use | Available Addresses |
+|-------|-------|------------|------|------------|---------------------|
+| **Class A** | `10.0.0.0` to `10.255.255.255` | `255.0.0.0` | `/8` | Large networks (ISPs, governments) | 16.7 million |
+| **Class B** | `172.16.0.0` to `172.31.255.255` | `255.240.0.0` | `/12` | Campuses, large organizations | 1 million |
+| **Class C** | `192.168.0.0` to `192.168.255.255` | `255.255.0.0` | `/16` | Home networks, small businesses | 65,536 total |
+
+### Public IP Addresses
+- Used for internet communication
+- Requires NAT (Network Address Translation) to convert private→public IPs
+
+---
+
+## 🗂️ IPv4 Address Classes (Classful Subnetting)
+
+| Class | Leading Bits | Range | Subnet Mask | Network Bits | Host Bits | Available Addresses |
+|-------|-------------|-------|------------|-------------|----------|---------------------|
+| **Class A** | `0xxx` | `0-127` | `255.0.0.0` | 8 | 24 | 16.7 million |
+| **Class B** | `10xx` | `128-191` | `255.255.0.0` | 16 | 16 | 65,536 |
+| **Class C** | `110x` | `192-223` | `255.255.255.0` | 24 | 8 | 254 |
+| **Class D (Multicast)** | `1110` | `224-239` | Not defined | Not defined | Not defined | Not defined |
+| **Class E (Reserved)** | `1111` | `240-255` | Not defined | Not defined | Not defined | Not defined |
+
+> **Note**: `127.0.0.0` is reserved for loopback addresses. Classful subnetting is largely historical but helps understand IP structure.
+
+### Identifying IP Classes
+- **17.22.90.7** → First octet = 17 → **Class A**
+- **128.90.10.2** → First octet = 128 → **Class B**  
+- **220.10.77.40** → First octet = 220 → **Class C**
+
+---
+
+## 🔧 Modern Subnetting (Classless)
+
+### CIDR (Classless Inter-Domain Routing)
+- Introduced circa 1993
+- Removes restrictions of class-based subnet masks
+- Allows flexible subnet masks using CIDR notation (`/8`, `/24`, `/32`, etc.)
+- Supported by most modern operating systems
+
+### Why Subnet?
+- Manage large networks efficiently
+- Improve performance and organization
+- Enhance security through segmentation
+- Make networks more scalable and reliable
+
+### VLSM (Variable Length Subnet Mask)
+- Allows administrators to subnet networks flexibly
+- Example: Breaking `10.0.0.0/8` (Class A) into `10.0.0.0/24` or `10.0.0.0/26` subnets
+- Maximizes address space efficiency
+
+---
+
+## 📋 Concept Coverage Check
+
+<details>
+<summary><strong>✅ Click to verify covered concepts</strong></summary>
+
+| Concept | Covered |
+|---------|---------|
+| Public vs Private Addresses | ✅ |
+| APIPA | ✅ |
+| RFC 1918 | ✅ |
+| Loopback/Localhost | ✅ |
+| Subnetting | ✅ |
+| VLSM | ✅ |
+| CIDR | ✅ |
+| IPv4 Address Classes (A, B, C, D, E) | ✅ |
+
+</details>
+
+---
+
+<p align="center">
+  <em>IPv4 addressing provides the foundation for modern networking despite address limitations</em>
+</p>
+
+---
+
+# 🖥️ Software Defined Networking (SDN) (1.8)
+
+SDN separates a network device’s functions into **logical planes**:  
+- **Data Plane** → Handles the actual traffic.  
+- **Control Plane** → Decides *how* traffic should flow.  
+- **Management Plane** → Allows administrators to manage and configure devices.  
+
+---
+
+## 🧱 Functional Planes
+
+| Plane              | Role                                                       | Examples                                    |
+|-------------------|------------------------------------------------------------|---------------------------------------------|
+| **Data Plane**    | Does the heavy lifting: forwarding & processing packets     | Forwarding, NAT, Encryption, Trunking       |
+| **Control Plane** | Manages decisions for the Data Plane                        | Routing tables, NAT tables, Session tables  |
+| **Management Plane** | Administrator control over the device                     | Browser GUI, SSH, APIs                      |
+
+---
+
+## 🌐 SD-WAN (Software Defined Wide Area Network)
+
+- Extends SDN to **Wide Area Networks**.  
+- Designed for the **cloud era**: apps connect directly to the cloud instead of through a central data center.  
+
+### ✨ Characteristics
+- **App-aware routing** → Decisions based on application, QoS, priority.  
+- **ZTP (Zero-Touch Provisioning)** → Devices auto-configure themselves.  
+- **Dynamic routing** → Chooses the best path in real time.  
+- **Transport agnostic** → Works over 5G, fiber, DSL, cable, etc.  
+- **Centralized management** → Single controller for the entire WAN.  
+
+---
+
+## 🏢 Data Center Interconnect
+
+- Connects multiple data centers across different locations.  
+- Enables:  
+  - Customer segmentation  
+  - Application distribution (high availability)  
+  - Workload mobility (apps can move between sites)  
+
+---
+
+## 🕸️ VXLAN (Virtual Extensible LAN)
+
+VXLAN extends VLAN capabilities for large-scale, cloud-driven networks.  
+Think of it as **“VLAN on steroids.”**
+
+| Feature             | VLAN                     | VXLAN                        |
+|---------------------|--------------------------|------------------------------|
+| **Max Networks**    | ~4,000                   | ~16 million                  |
+| **Encapsulation**   | OSI Layer 2              | OSI Layer 3 (tunneled)       |
+| **Use Case**        | Small orgs / local nets  | Large corps / data centers   |
+
+💡 **Key Benefits of VXLAN**:  
+- Flexibility and scalability far beyond VLANs.  
+- Supports data center interconnects across regions.  
+- Ensures workloads and applications run smoothly despite IP differences.  
+
+---
+
+💡 **Key Takeaways:**  
+- SDN = Separates **Data, Control, and Management** planes.  
+- SD-WAN = Cloud-first WAN, app-aware and transport agnostic.  
+- Data Center Interconnect = Connects workloads globally.  
+- VXLAN = Scalable Layer 3 overlay, way beyond VLAN limits.  
