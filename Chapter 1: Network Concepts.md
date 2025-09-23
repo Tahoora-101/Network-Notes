@@ -1276,3 +1276,7 @@ Think of it as **“VLAN on steroids.”**
 - SD-WAN = Cloud-first WAN, app-aware and transport agnostic.  
 - Data Center Interconnect = Connects workloads globally.  
 - VXLAN = Scalable Layer 3 overlay, way beyond VLAN limits.  
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fcd00591-564b-4527-a46f-0ca9f2fa9cad" alt="vxlan" width="800"/>
+</p>
