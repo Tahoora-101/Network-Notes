@@ -1278,5 +1278,5 @@ Think of it as **“VLAN on steroids.”**
 - VXLAN = Scalable Layer 3 overlay, way beyond VLAN limits.  
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/fcd00591-564b-4527-a46f-0ca9f2fa9cad" alt="vxlan" width="800"/>
+  <img src="https://github.com/user-attachments/assets/fcd00591-564b-4527-a46f-0ca9f2fa9cad" alt="vxlan" width="100%"/>
 </p>
