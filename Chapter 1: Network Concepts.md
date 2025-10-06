@@ -1275,8 +1275,62 @@ Think of it as **“VLAN on steroids.”**
 - SDN = Separates **Data, Control, and Management** planes.  
 - SD-WAN = Cloud-first WAN, app-aware and transport agnostic.  
 - Data Center Interconnect = Connects workloads globally.  
-- VXLAN = Scalable Layer 3 overlay, way beyond VLAN limits.  
+- VXLAN = Scalable Layer 3 overlay, way beyond VLAN limits.
+
+**VLAN Encapsulation**
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/fcd00591-564b-4527-a46f-0ca9f2fa9cad" alt="vxlan" width="100%"/>
 </p>
+
+---
+
+## ⚙️ Setup
+
+- Two **virtualization servers**, each with its own **virtual switch**.  
+- Each virtual switch has a **VTEP (VXLAN Tunnel Endpoint)**:  
+  - 🖥️ **Server 1** → `VTEP = 1.1.1.1`  
+  - 🖥️ **Server 2** → `VTEP = 2.2.2.2`  
+- Each server hosts **3 virtual machines (VMs)**:  
+  - **Server 1:** VM A1, VM B1, VM C1  
+  - **Server 2:** VM A2, VM B2, VM C2  
+- VM correspondence:  
+  - A1 ↔ A2  
+  - B1 ↔ B2  
+  - C1 ↔ C2  
+
+---
+
+## 🧩 VNI (Virtual Network Identifier)
+
+Each virtual network is assigned a **VNI (Virtual Network Identifier):**
+
+| Virtual Network | Assigned VNI |
+|-----------------|--------------|
+| **A** | 2000 |
+| **B** | 3000 |
+| **C** | 4000 |
+
+> These VNIs are **identical on both servers**, ensuring that each side knows which VXLAN segment the traffic belongs to.
+
+---
+
+## 🚀 VXLAN Tunnel
+
+When **A1** wants to communicate with **A2**, VXLAN encapsulation is used:
+
+1. The **virtual switch** encapsulates A1’s Ethernet frame.  
+2. It wraps the frame with the following headers:  
+   - **VXLAN Header** → contains `VNI 2000`  
+   - **UDP Header** → VXLAN rides over UDP  
+   - **IP Header** → source `1.1.1.1`, destination `2.2.2.2`  
+   - **Ethernet Header** → outer frame for physical transport  
+
+---
+
+## 🎯 At the Destination VTEP
+
+1. The **outer headers** (Ethernet, IP, UDP, VXLAN) are **removed**.  
+2. The **original Ethernet frame** is delivered to the target VM (**A2**).  
+3. This allows **Layer 2 communication** to occur **over a Layer 3 infrastructure** — bridging networks virtually.  
+
