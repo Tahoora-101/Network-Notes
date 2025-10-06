@@ -1276,17 +1276,15 @@ Think of it as **“VLAN on steroids.”**
 - SD-WAN = Cloud-first WAN, app-aware and transport agnostic.  
 - Data Center Interconnect = Connects workloads globally.  
 - VXLAN = Scalable Layer 3 overlay, way beyond VLAN limits.
+- Two **virtualization servers**, each with its own **virtual switch**.
 
 **VLAN Encapsulation**
-
-<p align="center">
+<p align="center" style="margin:0;padding:0;">
   <img src="https://github.com/user-attachments/assets/fcd00591-564b-4527-a46f-0ca9f2fa9cad" alt="vxlan" width="100%"/>
 </p>
-
----
+<br style="margin:0;padding:0;"/>
 
 ## ⚙️ Setup
-
 - Two **virtualization servers**, each with its own **virtual switch**.  
 - Each virtual switch has a **VTEP (VXLAN Tunnel Endpoint)**:  
   - 🖥️ **Server 1** → `VTEP = 1.1.1.1`  
@@ -1298,6 +1296,8 @@ Think of it as **“VLAN on steroids.”**
   - A1 ↔ A2  
   - B1 ↔ B2  
   - C1 ↔ C2  
+
+
 
 ---
 
