@@ -1281,10 +1281,9 @@ Think of it as **“VLAN on steroids.”**
 **VLAN Encapsulation**
 <p align="center" style="margin:0;padding:0;">
   <img src="https://github.com/user-attachments/assets/fcd00591-564b-4527-a46f-0ca9f2fa9cad" alt="vxlan" width="100%"/>
-</p>
 <br style="margin:0;padding:0;"/>
 
-## ⚙️ Setup
+### ⚙️ Setup
 - Two **virtualization servers**, each with its own **virtual switch**.  
 - Each virtual switch has a **VTEP (VXLAN Tunnel Endpoint)**:  
   - 🖥️ **Server 1** → `VTEP = 1.1.1.1`  
@@ -1295,13 +1294,9 @@ Think of it as **“VLAN on steroids.”**
 - VM correspondence:  
   - A1 ↔ A2  
   - B1 ↔ B2  
-  - C1 ↔ C2  
+  - C1 ↔ C2
 
-
-
----
-
-## 🧩 VNI (Virtual Network Identifier)
+### 🧩 VNI (Virtual Network Identifier)
 
 Each virtual network is assigned a **VNI (Virtual Network Identifier):**
 
@@ -1313,9 +1308,7 @@ Each virtual network is assigned a **VNI (Virtual Network Identifier):**
 
 > These VNIs are **identical on both servers**, ensuring that each side knows which VXLAN segment the traffic belongs to.
 
----
-
-## 🚀 VXLAN Tunnel
+### 🚀 VXLAN Tunnel
 
 When **A1** wants to communicate with **A2**, VXLAN encapsulation is used:
 
@@ -1326,11 +1319,141 @@ When **A1** wants to communicate with **A2**, VXLAN encapsulation is used:
    - **IP Header** → source `1.1.1.1`, destination `2.2.2.2`  
    - **Ethernet Header** → outer frame for physical transport  
 
----
-
-## 🎯 At the Destination VTEP
+### 🎯 At the Destination VTEP
 
 1. The **outer headers** (Ethernet, IP, UDP, VXLAN) are **removed**.  
 2. The **original Ethernet frame** is delivered to the target VM (**A2**).  
-3. This allows **Layer 2 communication** to occur **over a Layer 3 infrastructure** — bridging networks virtually.  
+3. This allows **Layer 2 communication** to occur **over a Layer 3 infrastructure** — bridging networks virtually.
+
+---
+
+# 🔒 Zero Trust
+
+## What is Zero Trust?
+
+- **Zero Trust** literally means *zero trust*.  
+- As technology grows, so do the threats — and to keep up, we adopt Zero Trust.  
+- In Zero Trust, once you pass the firewall, you still can’t access anything beyond what your role allows.  
+- **Everything must be verified:** people, devices, and processes.  
+- You may have to go through **MFA**, **encryption**, **monitoring**, and **system permissions** every step of the way.
+
+---
+
+## 🧩 Policy-Based Authentication
+
+### Adaptive Identity
+
+- Considers the **context** — source, device, and requested resource.  
+- Example:  
+  If you log in from another device other than the company's device, a new location, or an odd time, **adaptive identity** will still allow access but with extra **MFA**.
+
+### Policy-Based Access Control (PBAC)
+
+- Similar to adaptive identity, but uses **predefined rules**.  
+- Think of it like a **rulebook**:  
+  - Using a non-company device → ❌ Denied.  
+  - Logging in at odd hours or suspicious location → ❌ Blocked.  
+  - Same company device, normal hours → ✅ Granted access.
+
+---
+
+## 🔐 Authorization
+
+- Kicks in **after authentication** is complete.  
+- Determines **what systems, apps, or data** you can access — and **how much**.  
+- Example:  
+  - *Helpdesk Technician* → hardware systems only.  
+  - *Helpdesk Manager* → can modify databases or systems.  
+  - *User* → access limited to their desktop.  
+- Access is also controlled by **time**, **location**, and **device**:  
+  - Remote + odd hours + unknown device → limited access.  
+  - Office + company device + work hours → full access.
+
+---
+
+## ⚙️ Least Privilege Access
+
+- Means giving **only the minimum required permissions** to perform your job.  
+- Example:  
+  - Helpdesk Manager → no access to Networking.  
+  - Networking → no access to Finance.  
+  - Everyone stays within their lane.  
+- If everyone had admin rights and a **malware** breach occurred, the malware would gain admin-level control — total disaster.  
+  👉 Hence, *least privilege is mandatory.*
+
+---
+
+## 🌐 SASE (Secure Access Service Edge)
+
+- Think of SASE as a **next-gen VPN** — but stronger.  
+- It combines:  
+  - VPN  
+  - Firewall  
+  - Zero Trust  
+  - Threat Protection  
+  - Secure Web Gateway  
+  — all in one **cloud-delivered** package.  
+- Built into **all company-provided devices**.  
+- Works for:  
+  - Remote workers  
+  - Field agents  
+  - Corporate office employees  
+- You don’t need to toggle it on or off — it’s **always active**, running **before your apps** like cloud services, data centers, SaaS platforms, and the internet.
+
+---
+
+🧭 *Zero Trust is not about paranoia — it’s about precision. Verify everything. Trust nothing.*
+
+---
+
+# 🏗️ Infrastructure as Code (IaC)
+
+## ⚙️ What is IaC?
+
+- **Infrastructure as Code (IaC)** means managing and provisioning your network and systems through **code** instead of manual setup.  
+- You can **create, deploy, test, and modify** entire environments using scripts.  
+- Once your code works, you can **reuse or clone** it to build identical infrastructures anytime.  
+- IaC is a **core part of modern cloud computing** — automating configuration, scaling, and maintenance.
+
+---
+
+## 📘 Playbook
+
+- A **playbook** acts as a **response guide** when something goes wrong — like a **security breach** or **ransomware recovery**.  
+- It provides **step-by-step recovery actions**, ensuring consistent and quick responses.  
+- Playbooks are **reusable** and **modifiable** — you can tweak them anytime to match new procedures.  
+- Integrated into:  
+  - **SOAR (Security Orchestration, Automation & Response)**  
+  - **SIEMs**, **threat intelligence**, and **third-party tools**
+
+---
+
+## 🔐 Automation & Configuration Use Case
+
+- Suppose you have **100 routers** with different firmware versions — instead of updating manually, you can **automate all upgrades** through one IaC script.  
+- IaC allows:  
+  - Automated **patching** and **deployment**  
+  - Testing existing infrastructure setups  
+  - Real-time **configuration management** and **change control**  
+- You can modify network or software systems with **a single line of code**, scaling or reverting instantly as needed.
+
+---
+
+## 🗂️ Source Control
+
+- Multiple **definition files (IaC scripts)** evolve over time — source control ensures you always use the **latest, verified version**.  
+- With **version control systems** like **Git**, changes can be tracked, reviewed, and rolled back when needed.  
+- In collaborative environments:  
+  - Changes from multiple users are **automatically merged and tracked**.  
+  - Updates are stored in a **central repository** to prevent loss or conflicts.
+
+---
+
+### 🧩 Controlling the Source Code
+
+- When several developers edit the same code simultaneously, conflicts can occur.  
+- Sometimes merges are automatic — other times, **manual selection** is required to keep the best version.  
+- To minimize chaos, use the **branching workflow**:  
+
+
 
