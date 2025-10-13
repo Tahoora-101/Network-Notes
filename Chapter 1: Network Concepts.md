@@ -1554,3 +1554,5 @@ Each interface holds **multiple IP addresses** at once.
 - Translates traffic **seamlessly**, invisible to the end user.  
 - Requires a **NAT64-capable router** and a **DNS64 server** for DNS translation.  
 - IPv6 can **receive** from IPv4, but it cannot **send back directly** — translation must occur in between.
+<img width="697" height="305" alt="image" src="https://github.com/user-attachments/assets/cd14ce88-c584-4452-998b-732d078807ac" />
+
