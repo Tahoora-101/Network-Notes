@@ -1453,7 +1453,104 @@ When **A1** wants to communicate with **A2**, VXLAN encapsulation is used:
 
 - When several developers edit the same code simultaneously, conflicts can occur.  
 - Sometimes merges are automatic — other times, **manual selection** is required to keep the best version.  
-- To minimize chaos, use the **branching workflow**:  
+- To minimize chaos, use the **branching workflow**:
 
+```
+Branch → Work → Test → Confirm → Merge
+```
 
+- This allows you to **sandbox**, **test**, and then **merge safely** into the main codebase.
 
+---
+
+🧠 *Infrastructure as Code turns manual chaos into programmable order — automate smart, scale fast.*
+
+---
+
+# 🌐 IPv6 Addressing
+
+## 🧩 IPv4 Exhaustion
+
+- There are **20+ billion devices** and only **4.29 billion IPv4 addresses** available.  
+- IPv4 address space became **exhausted**, leaving no room for new devices.  
+- **NAT (Network Address Translation)** helped extend IPv4 usability, but not all devices worked smoothly behind NAT.  
+- To solve this, **IPv6** was introduced — offering **vast address space** and long-term scalability.  
+
+---
+
+## 🆕 IPv6 Addresses
+
+- **Internet Protocol Version 6 (IPv6)**  
+- Uses a **128-bit** address format.  
+- Provides approximately **340 undecillion (3.4 × 10³⁸)** possible addresses — enough for the foreseeable future.  
+
+---
+
+## 🔢 IPv6 Address Compression
+
+IPv6 allows address shortening to make notation easier:  
+
+- Groups of consecutive **zeroes** can be replaced with a **double colon (::)**  
+  > ⚠️ Only one `::` can be used per address.  
+- **Leading zeroes** in any 16-bit block are optional.  
+
+**Example:**  
+```
+2600:DDDD:1111:0001:0000:0000:0000:0001
+→ 2600:DDDD:1111:1:0:0:0:1
+→ 2600:DDDD:1111:1::1
+```
+---
+
+## 🔄 Communication Between IPv4 and IPv6
+
+Some legacy or embedded devices **cannot support IPv6**, requiring methods to enable communication between IPv4 and IPv6 networks.  
+
+### Three Main Methods:
+1. **Tunneling** → Encapsulates one protocol inside another.  
+2. **Dual Stack** → Devices run both IPv4 and IPv6 simultaneously.  
+3. **Translation** → Converts IPv4 to IPv6 and vice versa.  
+
+> 🧠 These methods are **temporary solutions** — the goal is full IPv6 adoption.
+
+---
+
+## 🚇 Tunnel Communication
+
+A **temporary migration method** to enable IPv6 traffic over IPv4 infrastructure.
+
+### **6to4 Addressing**
+- IPv6 packets are **encapsulated inside IPv4**.  
+- No NAT is used.  
+- Requires a **relay router**.  
+- Deprecated — **Windows no longer supports it**.  
+
+### **4in6 Addressing**
+- Similar concept but encapsulates **IPv4 inside IPv6**.  
+- Also uses encapsulation techniques.  
+
+---
+
+## ⚙️ Dual Stack
+
+**Dual Stack** allows devices to run **IPv4 and IPv6 simultaneously**.  
+Each interface holds **multiple IP addresses** at once.
+
+### IPv4 Side:
+- Configured with **IPv4 addresses**.  
+- Maintains a separate **IPv4 routing table**.  
+- Uses **IPv4 dynamic routing protocols** (e.g., OSPFv2, RIP).  
+
+### IPv6 Side:
+- Configured with **IPv6 addresses**.  
+- Maintains an independent **IPv6 routing table**.  
+- Uses **IPv6 dynamic routing protocols** (e.g., OSPFv3, RIPng).  
+
+---
+
+## 🌉 Translating Between IPv4 and IPv6
+
+- Uses **NAT64** (Network Address Translation 64) to bridge IPv4 and IPv6.  
+- Translates traffic **seamlessly**, invisible to the end user.  
+- Requires a **NAT64-capable router** and a **DNS64 server** for DNS translation.  
+- IPv6 can **receive** from IPv4, but it cannot **send back directly** — translation must occur in between.
